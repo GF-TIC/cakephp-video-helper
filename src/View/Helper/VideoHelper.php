@@ -16,7 +16,7 @@ class VideoHelper extends HtmlHelper
 {
     protected $_apis = [
         'youtube_image' => '//i.ytimg.com/vi', // Location of youtube images
-        'youtube' => '//www.youtube.com', // Location of youtube player
+        'youtube' => 'https://www.youtube.com', // Location of youtube player
         'vimeo' => '//player.vimeo.com/video',
         'bbc' => '//www.bbc.co.uk',
         'dailymotion' => '//www.dailymotion.com',
@@ -106,7 +106,8 @@ class VideoHelper extends HtmlHelper
                 'src' => $settings['src'],
                 'frameborder' => (int)$settings['frameborder'],
                 'allowfullscreen' => $settings['allowfullscreen'],
-                'autoplay' => (int)$settings['autoplay']
+                'autoplay' => (int)$settings['autoplay'],
+                'allow' => $settings['allow'],
             ]
         ) . $this->tag('/iframe');
     }

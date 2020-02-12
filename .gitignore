@@ -1,0 +1,21 @@
+# Composer
+/composer.lock
+
+# CakePHP 3
+/vendor/*
+/tmp/*
+/logs/*
+
+# OS
+.DS_Store
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+
+# Tool specific files #
+# JetBrains, aka PHPStorm, IntelliJ IDEA
+.phpstorm.meta.php/
+.idea/*
+# NetBeans
+nbproject/*
