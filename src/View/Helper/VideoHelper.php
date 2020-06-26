@@ -136,9 +136,11 @@ class VideoHelper extends HtmlHelper
             'show_portrait' => false,
             'color' => '00adef',
             'allowfullscreen' => true,
-            'autoplay' => true,
-            'loop' => true,
-            'frameborder' => 0
+            'autoplay' => false,
+            'loop' => false,
+            'frameborder' => 0,
+            'mute' => false,
+            'enablejsapi' => false,
         ];
         $settings = array_merge($defaultSettings, $settings);
 
@@ -148,17 +150,20 @@ class VideoHelper extends HtmlHelper
             return $this->_notFound(!empty($settings['failSilently']));
         }
 
-        $settings['src'] = $this->_apis['vimeo'] . '/' . $videoId . '?title=' . (int)$settings['show_title'] . '&byline=' . (int)$settings['show_byline'] . '&portrait=' . (int)$settings['show_portrait'] . '&color=' . $settings['color'] . '&autoplay=' . (int)$settings['autoplay'] . '&loop=' . (int)$settings['loop'];
+        $settings['src'] = $this->_apis['vimeo'] . '/' . $videoId . '?title=' . (int)$settings['show_title'] . '&byline=' .
+            (int)$settings['show_byline'] . '&portrait=' . (int)$settings['show_portrait'] . '&color=' . $settings['color'] .
+            '&autoplay=' . (int)$settings['autoplay'] . '&loop=' . (int)$settings['loop'] . '&muted=' . $settings['mute'];
 
         return $this->tag('iframe', null, [
-                    'src' => $settings['src'],
-                    'width' => $settings['width'],
-                    'height' => $settings['height'],
-                    'frameborder' => (int)$settings['frameborder'],
-                    'webkitAllowFullScreen' => (int)$settings['allowfullscreen'],
-                    'mozallowfullscreen' => (int)$settings['allowfullscreen'],
-                    'allowfullscreen' => $settings['allowfullscreen']
-                ]) . $this->tag('/iframe');
+                'src' => $settings['src'],
+                'width' => $settings['width'],
+                'height' => $settings['height'],
+                'frameborder' => (int)$settings['frameborder'],
+                'webkitAllowFullScreen' => (int)$settings['allowfullscreen'],
+                'mozallowfullscreen' => (int)$settings['allowfullscreen'],
+                'allowfullscreen' => $settings['allowfullscreen'],
+                'class' => 'vimeo-player',
+            ]) . $this->tag('/iframe');
     }
 
     /**
